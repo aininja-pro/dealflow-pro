@@ -1,0 +1,119 @@
+---
+description: Apply these rules when creating the project
+globs:
+alwaysApply: true
+---
+## Project Overview
+
+*   **Type:** cursor_project_rules
+*   **Description:** DealFlow Pro is a web application designed to simplify and streamline the entire real estate acquisition process for investors, flippers, and beginners by guiding them through seller preparation, deal analysis, photo management, and reporting.
+*   **Primary Goal:** Simplify and streamline the multifaceted process of real estate acquisitions by integrating tools for pre-work planning, dynamic conversation guidance, financial analysis (deal calculator and ARV estimation), and visual documentation.
+
+## Project Structure
+
+### Framework-Specific Routing
+
+*   **Directory Rules:**
+
+    *   **next.js 14:** Enforce use of the App Router with an `app/` directory structure utilizing nested route folders. For instance:
+
+        *   Example 1: Next.js 14 (App Router) → `app/[route]/page.tsx` conventions
+        *   Example 2 (if using Pages Router): `pages/[route].tsx` pattern
+        *   Example 3 (for React Router 6): `src/routes/` with `createBrowserRouter`
+
+### Core Directories
+
+*   **Versioned Structure:**
+
+    *   **app/**: Contains the main application routes, components, and layouts for Next.js 14. For example:
+
+        *   `app/api` → Next.js 14 API routes with Route Handlers
+        *   `app/dashboard` → Houses dashboard and root layouts (e.g., `app/dashboard/layout.tsx`)
+
+    *   **styles/**: Includes Tailwind CSS and Chakra UI configuration to maintain a consistent, polished UI.
+
+### Key Files
+
+*   **Stack-Versioned Patterns:**
+
+    *   **app/dashboard/layout.tsx:** Implements Next.js 14 root layouts using the App Router.
+    *   **app/auth/login/page.tsx:** Example file for authentication flows using server actions and role-based access.
+
+## Tech Stack Rules
+
+*   **Version Enforcement:**
+
+    *   **next@14:** Use the App Router exclusively; avoid legacy patterns like `getInitialProps`.
+    *   **typescript:** Enforce strict type checking and utilize interfaces for components and API routes.
+    *   **tailwind css:** Implement utility-first CSS with purging configured for production builds.
+    *   **chakra ui:** Use Chakra UI’s theming and component library for a clean, professional UI with consistency across the application.
+    *   **aws s3:** Follow best practices including region selection, versioning, cross-region replication (CRR), and encryption for data at rest.
+    *   **stripe:** Integrate via Stripe Elements and maintain PCI compliance for seamless payments and subscriptions.
+
+## PRD Compliance
+
+*   **Non-Negotiable:**
+
+    *   "DealFlow Pro simplifies and streamlines the multifaceted process of real estate acquisitions by integrating essential tools such as a pre-work planner, conversation guide, deal calculator, and photo management."
+    *   All core functionalities outlined in the PRD (e.g., manual input for comps and robust validations, admin-controlled educational tips at launch with plans for future dynamic updates, and secure cloud storage on AWS S3) must be implemented without compromise.
+
+## App Flow Integration
+
+*   **Stack-Aligned Flow:**
+
+    *   Example: Next.js 14 Auth Flow → `app/auth/login/page.tsx` uses server actions for secure login and role-based access control.
+
+    *   Dashboard and Deal Management Flow:
+
+        *   `app/dashboard/page.tsx` to render a central overview of deals
+        *   `app/deals/[id]/page.tsx` for detailed deal views including modules for pre-work, calculations, photo capture, and reporting
+
+    *   Photo Capture Feature:
+
+        *   Routing under `app/deals/[id]/photos/page.tsx` to handle mobile photo capture and web uploads with auto-resizing and basic editing tools.
+
+## Best Practices
+
+*   **next.js 14**
+
+    *   Use the App Router with nested directories to clearly separate page-level components from shared layouts and API routes.
+    *   Leverage server-side rendering and server components where beneficial for performance and SEO.
+    *   Avoid legacy practices (e.g., no `getInitialProps` in App Router projects).
+
+*   **typescript**
+
+    *   Enforce strict type checking with a configured `tsconfig.json`.
+    *   Define explicit interfaces for component props, API response structures, and utility functions.
+    *   Utilize ESLint and Prettier integrations to maintain code quality and consistency.
+
+*   **tailwind css**
+
+    *   Use utility classes to build components with minimal custom CSS.
+    *   Configure purge settings to prevent unused styles from bloating production builds.
+    *   Maintain consistency in design by following the defined Tailwind configuration.
+
+*   **chakra ui**
+
+    *   Utilize Chakra UI’s theming capabilities to enforce consistent design tokens across the app.
+    *   Leverage Chakra UI components to speed up development and ensure accessibility.
+    *   Override default styles only where necessary to maintain a unified design language.
+
+*   **aws s3**
+
+    *   Enable versioning and cross-region replication (CRR) to secure uploaded content.
+    *   Use server-side encryption (e.g., AES-256) for data at rest.
+    *   Follow best practices for backup protocols and disaster recovery planning.
+
+*   **stripe**
+
+    *   Integrate with Stripe Elements to provide a fully-branded payment experience.
+    *   Follow PCI DSS compliance guidelines to ensure secure handling of payment information.
+    *   Use webhooks to monitor and respond to payment events in real time.
+
+## Rules
+
+*   Derive folder/file patterns directly from techStackDoc versions.
+*   If Next.js 14 App Router: Enforce `app/` directory with nested route folders, and avoid using legacy `pages/` directories.
+*   If Pages Router is chosen, use a flat `pages/*.tsx` structure—but note that for this project, Next.js 14's App Router is mandated.
+*   Mirror this logic for other tech stacks like React Router or SvelteKit by adhering strictly to their version-specific directory patterns.
+*   Never mix version patterns (e.g., no `pages/` in an App Router project).
